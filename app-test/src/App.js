@@ -1,25 +1,24 @@
-import {useState } from 'react';
 import './App.css';
-import Axios from "axios";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Home } from './pages/Home';
+import { Navbar } from './Navbar';
+import { Menu } from './pages/Menu';
+import { Contact } from './pages/Contact';
+
 
 function App() {
-
-  const [generatedExcuse, setGeneratedExcuse] = useState("");
-
-  const fetchExcuse = (excuse) => {
-    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuse}/`).then((res) => {
-    setGeneratedExcuse(res.data[0].excuse);
-  });
-  }
-
   return (
     <div className="App">
-      <h1>Generate An Excuse</h1>
-      <button onClick={() => fetchExcuse("party")}> Party </button>
-      <button onClick={() => fetchExcuse("family")}> Family </button>
-      <button onClick={() => fetchExcuse("office")}> Office </button>
-
-      <p>{generatedExcuse}</p>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/menu" element={<Menu/>} />
+          <Route path="/contact" element={<Contact/>} />
+           <Route path="*" element={<h1> PAGE NOT FOUND </h1>} />
+        </Routes>
+      </Router>
+      
     </div>
   );
 }
