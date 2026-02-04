@@ -1,10 +1,17 @@
 import './App.css';
-import { Cat } from './Cat';
+import { Person } from './Person';
+
 
 function App() {
   return (
     <div className="App">
-      <Cat/>
+        <Person
+          name="Paula"
+          email="paula@gmail.com"
+          age={20}
+          isMarried={false}
+          friends={["snoopy", "woodstcock", "linus"]}
+        />
     </div>
   );
 }
